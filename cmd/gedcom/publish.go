@@ -27,6 +27,8 @@ func runPublishCommand() {
 	var optionGoogleAnalyticsID string
 	var optionLivingVisibility string
 	var optionJobs int
+	var optionAllowMultiLine bool
+	var optionAllowInvalidIndents bool
 
 	var optionNoIndividuals bool
 	var optionNoPlaces bool
@@ -61,6 +63,12 @@ func runPublishCommand() {
 			"website faster. An ideal value would be the number of CPUs "+
 			"available, if you can spare it.")
 
+	flag.BoolVar(&optionAllowMultiLine, "allow-multi-line", false,
+		"Allow malformed multiline values that omit CONT tags.")
+
+	flag.BoolVar(&optionAllowInvalidIndents, "allow-invalid-indents", false,
+		"Allow child nodes with invalid indentation depth.")
+
 	flag.BoolVar(&optionNoIndividuals, "no-individuals", false,
 		"Exclude Individuals.")
 
@@ -94,9 +102,16 @@ func runPublishCommand() {
 	}
 
 	decoder := gedcom.NewDecoder(file)
-	document, err := decoder.Decode()
+	decoder.AllowMultiLine = optionAllowMultiLine
+	decoder.AllowInvalidIndents = optionAllowInvalidIndents
+
+	document, err := decodeDocument(decoder)
 	if err != nil {
 		fatalln(err)
+	}
+
+	for _, warning := range publishWarningsForMissingNames(document) {
+		log.Printf("WARNING: %s", warning)
 	}
 
 	options := &html.PublishShowOptions{

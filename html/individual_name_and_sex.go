@@ -20,13 +20,23 @@ func NewIndividualNameAndSex(individual *gedcom.IndividualNode) *IndividualNameA
 }
 
 func (c *IndividualNameAndSex) WriteHTMLTo(w io.Writer) (int64, error) {
-	primaryName := c.individual.Names()[0]
-	title := primaryName.Title()
-	prefix := primaryName.Prefix()
-	name := primaryName.GivenName()
-	surnamePrefix := primaryName.SurnamePrefix()
-	surname := primaryName.Surname()
-	suffix := primaryName.Suffix()
+	title := ""
+	prefix := ""
+	name := ""
+	surnamePrefix := ""
+	surname := ""
+	suffix := ""
+
+	names := c.individual.Names()
+	if len(names) > 0 {
+		primaryName := names[0]
+		title = primaryName.Title()
+		prefix = primaryName.Prefix()
+		name = primaryName.GivenName()
+		surnamePrefix = primaryName.SurnamePrefix()
+		surname = primaryName.Surname()
+		suffix = primaryName.Suffix()
+	}
 
 	titleRow := keyedRow("Title", title)
 	prefixRow := keyedRow("Prefix", prefix)

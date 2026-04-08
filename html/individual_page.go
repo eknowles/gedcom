@@ -30,16 +30,20 @@ func NewIndividualPage(document *gedcom.Document, individual *gedcom.IndividualN
 }
 
 func (c *IndividualPage) WriteHTMLTo(w io.Writer) (int64, error) {
-	name := c.individual.Names()[0]
+	name := "Unknown"
+	names := c.individual.Names()
+	if len(names) > 0 {
+		name = names[0].String()
+	}
 
 	individualName := NewIndividualName(c.individual, c.options.LivingVisibility,
 		UnknownEmphasis)
 	individualDates := NewIndividualDates(c.individual, c.options.LivingVisibility)
 
 	return core.NewPage(
-		name.String(),
+		name,
 		core.NewComponents(
-			NewPublishHeader(c.document, name.String(), selectedExtraTab,
+			NewPublishHeader(c.document, name, selectedExtraTab,
 				c.options, c.indexLetters, c.placesMap),
 			NewAllParentButtons(c.document, c.individual,
 				c.options.LivingVisibility, c.placesMap),

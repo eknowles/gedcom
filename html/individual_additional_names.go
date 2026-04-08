@@ -21,7 +21,11 @@ func NewIndividualAdditionalNames(individual *gedcom.IndividualNode) *Individual
 
 func (c *IndividualAdditionalNames) WriteHTMLTo(w io.Writer) (int64, error) {
 	rows := []core.Component{}
-	names := c.individual.Names()[1:]
+	allNames := c.individual.Names()
+	names := allNames[:0]
+	if len(allNames) > 1 {
+		names = allNames[1:]
+	}
 
 	for _, name := range names {
 		row := core.NewKeyedTableRow(

@@ -34,7 +34,7 @@ func newDocumentFromGEDCOMFile(path string, optionAllowMultiLine, optionAllowInv
 	decoder.AllowMultiLine = optionAllowMultiLine
 	decoder.AllowInvalidIndents = optionAllowInvalidIndents
 
-	return decoder.Decode()
+	return decodeDocument(decoder)
 }
 
 func runDiffCommand() {
