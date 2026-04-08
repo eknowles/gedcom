@@ -3,12 +3,11 @@
 //
 // Usage
 //
-//   gedcom publish -gedcom file.ged
+//	gedcom publish -gedcom file.ged
 //
 // You can view the full list of options using:
 //
-//   gedcom publish -help
-//
+//	gedcom publish -help
 package main
 
 import (

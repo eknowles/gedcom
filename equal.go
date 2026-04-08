@@ -11,10 +11,10 @@ package gedcom
 // The GEDCOM standard allows nodes to appear in any order. So the children are
 // compared in this way as well. For example the following root nodes are equal:
 //
-//   0 INDI @P1@        |  0 INDI @P1@
-//   1 BIRT             |  1 BIRT
-//   2 DATE 3 SEP 1943  |  2 PLAC England
-//   2 PLAC England     |  2 DATE 3 SEP 1943
+//	0 INDI @P1@        |  0 INDI @P1@
+//	1 BIRT             |  1 BIRT
+//	2 DATE 3 SEP 1943  |  2 PLAC England
+//	2 PLAC England     |  2 DATE 3 SEP 1943
 //
 // DeepEqual heavily depends on the logic of the Equals method for each kind of
 // node. Equals may or may not take into consideration child nodes to determine

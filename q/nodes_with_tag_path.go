@@ -18,18 +18,17 @@ type NodesWithTagPathExpr struct{}
 //
 // Find all Death nodes that belong to all individuals:
 //
-//   .Individuals | NodesWithTagPath("DEAT")
+//	.Individuals | NodesWithTagPath("DEAT")
 //
 // From the individuals find all the Date nodes within only the Birth nodes.
 //
-//   .Individuals | NodesWithTagPath("BIRT", "DATE")
+//	.Individuals | NodesWithTagPath("BIRT", "DATE")
 //
 // Combine all of the birth and death dates:
 //
-//   Births are .Individuals | NodesWithTagPath("BIRT", "DATE") | {type: "birth", date: .String};
-//   Deaths are .Individuals | NodesWithTagPath("DEAT", "DATE") | {type: "death", date: .String};
-//   Combine(Births, Deaths)
-//
+//	Births are .Individuals | NodesWithTagPath("BIRT", "DATE") | {type: "birth", date: .String};
+//	Deaths are .Individuals | NodesWithTagPath("DEAT", "DATE") | {type: "death", date: .String};
+//	Combine(Births, Deaths)
 func (e *NodesWithTagPathExpr) Evaluate(engine *Engine, input interface{}, args []*Statement) (interface{}, error) {
 	in := reflect.ValueOf(input)
 

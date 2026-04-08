@@ -14,22 +14,21 @@ type QuestionMarkExpr struct{}
 //
 // For example the following query:
 //
-//   .Individuals | ?
+//	.Individuals | ?
 //
 // Returns (most items removed for brevity):
 //
-//   [
-//     ".AddNode",
-//     ".Age",
-//     ".AgeAt",
-//     ...
-//     ".SurroundingSimilarity",
-//     ".Tag",
-//     ".Value",
-//     "?",
-//     "Length"
-//   ]
-//
+//	[
+//	  ".AddNode",
+//	  ".Age",
+//	  ".AgeAt",
+//	  ...
+//	  ".SurroundingSimilarity",
+//	  ".Tag",
+//	  ".Value",
+//	  "?",
+//	  "Length"
+//	]
 func (e *QuestionMarkExpr) Evaluate(engine *Engine, input interface{}, args []*Statement) (interface{}, error) {
 	in := reflect.TypeOf(input)
 

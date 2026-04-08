@@ -150,7 +150,7 @@ func (node *NameNode) Type() NameType {
 // The only difference between this as String() is that the surname is
 // encapsulated inside forward slashes like:
 //
-//   Sir Elliot Rupert /Chance/ Sr
+//	Sir Elliot Rupert /Chance/ Sr
 //
 // Even this uses the NameFormatGEDCOM it may return a different value from
 // Format(NameFormatGEDCOM) because any empty surnames will be removed.

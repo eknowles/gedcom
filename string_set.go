@@ -97,8 +97,7 @@ func (ss *StringSet) Strings() (elements []string) {
 
 // String returns all of the items sorted, in the form of:
 //
-//   (bar,foo)
-//
+//	(bar,foo)
 func (ss *StringSet) String() string {
 	return fmt.Sprintf("(%s)", strings.Join(ss.Strings(), ","))
 }

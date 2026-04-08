@@ -3,13 +3,12 @@ package gedcom
 // FamilySearchIDNode is the unique identifier for the person on
 // FamilySearch.org. A FamilySearch ID always takes the form of:
 //
-//   LZDP-V9V
+//	LZDP-V9V
 //
 // There are several known tags that carry the FamilySearch ID:
 //
-//   _FID (UnofficialTagFamilySearchID1): Seen exported from MacFamilyFree.
-//   _FSFTID (UnofficialTagFamilySearchID2): Some other applications.
-//
+//	_FID (UnofficialTagFamilySearchID1): Seen exported from MacFamilyFree.
+//	_FSFTID (UnofficialTagFamilySearchID2): Some other applications.
 type FamilySearchIDNode struct {
 	*SimpleNode
 }

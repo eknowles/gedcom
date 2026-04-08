@@ -3,12 +3,11 @@
 //
 // Usage
 //
-//   gedcom diff -left-gedcom file1.ged -right-gedcom file2.ged -output out.html
+//	gedcom diff -left-gedcom file1.ged -right-gedcom file2.ged -output out.html
 //
 // For a complete list of options use:
 //
-//   gedcom diff -help
-//
+//	gedcom diff -help
 package main
 
 import (

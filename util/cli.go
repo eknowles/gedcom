@@ -46,13 +46,12 @@ func WrapToMargin(s string, width int) (r string) {
 
 // CLIStringSlice is used to accept multiple values from a CLI argument like:
 //
-//   -foo value1 -foo value2
+//	-foo value1 -foo value2
 //
 // Usage:
 //
-//   var foos CLIStringSlice
-//   flag.Var(&foos, "foo", "Some description for this param.")
-//
+//	var foos CLIStringSlice
+//	flag.Var(&foos, "foo", "Some description for this param.")
 type CLIStringSlice []string
 
 func (i *CLIStringSlice) String() string {

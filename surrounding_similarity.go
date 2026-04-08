@@ -53,11 +53,10 @@ func NewSurroundingSimilarity(parentsSimilarity, individualSimilarity, spousesSi
 // WeightedSimilarity calculates a single similarity from all of the similarity
 // metrics with following weights:
 //
-//   IndividualSimilarity: 80%
-//   ParentsSimilarity: ~6.7%
-//   SpousesSimilarity: ~6.7%
-//   ChildrenSimilarity: ~6.7%
-//
+//	IndividualSimilarity: 80%
+//	ParentsSimilarity: ~6.7%
+//	SpousesSimilarity: ~6.7%
+//	ChildrenSimilarity: ~6.7%
 func (s SurroundingSimilarity) WeightedSimilarity() float64 {
 	individual := s.IndividualSimilarity * s.Options.IndividualWeight
 	parents := s.ParentsSimilarity * s.Options.ParentsWeight

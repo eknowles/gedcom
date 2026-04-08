@@ -49,9 +49,8 @@ func (node *DateNode) DateRange() (dateRange DateRange) {
 // There are too many combinations to document here, but the two main formats
 // you will receive will look like:
 //
-//   Bet. Feb 1956 and Mar 1956
-//   Abt. 13 Nov 1983
-//
+//	Bet. Feb 1956 and Mar 1956
+//	Abt. 13 Nov 1983
 func (node *DateNode) String() string {
 	startDate, endDate := node.StartAndEndDates()
 
@@ -64,8 +63,7 @@ func (node *DateNode) String() string {
 
 // Years fulfils the Yearer interface and is a convenience for:
 //
-//   node.DateRange().Years()
-//
+//	node.DateRange().Years()
 func (node *DateNode) Years() float64 {
 	return node.DateRange().Years()
 }

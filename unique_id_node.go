@@ -80,7 +80,7 @@ func (node *UniqueIDNode) UUID() (UUID, error) {
 //
 // This is what a UUID looks like in a PAF GEDCOM:
 //
-//   92FF8B766F327F48A256C3AE6DAE50D3A114
+//	92FF8B766F327F48A256C3AE6DAE50D3A114
 //
 // Notice that the _UID value is not divided into groups separated by hyphens,
 // but represented as one long hexadecimal number. What is not immediately
@@ -89,7 +89,7 @@ func (node *UniqueIDNode) UUID() (UUID, error) {
 // _UID value is 36 hexadecimal digits long. When we hyphenate the number for
 // readability, we find that there are four extra digits:
 //
-//   92FF8B76-6F32-7F48-A256-C3AE6DAE50D3-A114
+//	92FF8B76-6F32-7F48-A256-C3AE6DAE50D3-A114
 //
 // The _UID value is a UUID followed by a checksum.
 //

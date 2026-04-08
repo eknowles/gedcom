@@ -31,8 +31,9 @@ func (p *Parser) ParseString(q string) (engine *Engine, err error) {
 	return engine, nil
 }
 
-//   Statements := Statement NextStatement
-//               | Statement
+// Statements := Statement NextStatement
+//
+//	| Statement
 func (p *Parser) consumeStatements(separator TokenKind) (statements []*Statement, err error) {
 	defer p.tokens.Rollback(p.tokens.Position, &err)
 
@@ -55,7 +56,7 @@ func (p *Parser) consumeStatements(separator TokenKind) (statements []*Statement
 	return
 }
 
-//   NextStatement := separator Statement
+// NextStatement := separator Statement
 func (p *Parser) consumeNextStatement(separator TokenKind) (_ *Statement, err error) {
 	defer p.tokens.Rollback(p.tokens.Position, &err)
 
@@ -67,7 +68,7 @@ func (p *Parser) consumeNextStatement(separator TokenKind) (_ *Statement, err er
 	return p.consumeStatement()
 }
 
-//   AreOrIs := "are" | "is"
+// AreOrIs := "are" | "is"
 func (p *Parser) consumeAreOrIs() (err error) {
 	defer p.tokens.Rollback(p.tokens.Position, &err)
 
@@ -79,7 +80,7 @@ func (p *Parser) consumeAreOrIs() (err error) {
 	return err
 }
 
-//   Statement := NamedStatement | UnnamedStatement
+// Statement := NamedStatement | UnnamedStatement
 func (p *Parser) consumeStatement() (statement *Statement, err error) {
 	defer p.tokens.Rollback(p.tokens.Position, &err)
 
@@ -90,7 +91,7 @@ func (p *Parser) consumeStatement() (statement *Statement, err error) {
 	return p.consumeUnnamedStatement()
 }
 
-//   NamedStatement := word AreOrIs Expressions
+// NamedStatement := word AreOrIs Expressions
 func (p *Parser) consumeNamedStatement() (statement *Statement, err error) {
 	defer p.tokens.Rollback(p.tokens.Position, &err)
 
@@ -112,7 +113,7 @@ func (p *Parser) consumeNamedStatement() (statement *Statement, err error) {
 	return &Statement{VariableName: t[0].Value, Expressions: exprs}, nil
 }
 
-//   UnnamedStatement := Expressions
+// UnnamedStatement := Expressions
 func (p *Parser) consumeUnnamedStatement() (statement *Statement, err error) {
 	defer p.tokens.Rollback(p.tokens.Position, &err)
 
@@ -124,7 +125,7 @@ func (p *Parser) consumeUnnamedStatement() (statement *Statement, err error) {
 	return &Statement{Expressions: exprs}, nil
 }
 
-//   NextExpression := "|" Expression
+// NextExpression := "|" Expression
 func (p *Parser) consumeNextExpression() (_ Expression, err error) {
 	defer p.tokens.Rollback(p.tokens.Position, &err)
 
@@ -136,7 +137,7 @@ func (p *Parser) consumeNextExpression() (_ Expression, err error) {
 	return p.consumeExpression()
 }
 
-//   Expressions := Expression NextExpression...
+// Expressions := Expression NextExpression...
 func (p *Parser) consumeExpressions() (expressions []Expression, err error) {
 	defer p.tokens.Rollback(p.tokens.Position, &err)
 
@@ -159,7 +160,7 @@ func (p *Parser) consumeExpressions() (expressions []Expression, err error) {
 	return
 }
 
-//   Expression := Accessor | Word | QuestionMark | BinaryExpression
+// Expression := Accessor | Word | QuestionMark | BinaryExpression
 func (p *Parser) consumeExpression() (expression Expression, err error) {
 	defer p.tokens.Rollback(p.tokens.Position, &err)
 
@@ -199,7 +200,7 @@ end:
 	return expression, nil
 }
 
-//   Constant := number | string
+// Constant := number | string
 func (p *Parser) consumeConstant() (_ *ConstantExpr, err error) {
 	defer p.tokens.Rollback(p.tokens.Position, &err)
 
@@ -217,7 +218,7 @@ func (p *Parser) consumeConstant() (_ *ConstantExpr, err error) {
 	return nil, errors.New("no constant found")
 }
 
-//   Operator := "=" | "!=" | ">" | "<" | ">=" | "<="
+// Operator := "=" | "!=" | ">" | "<" | ">=" | "<="
 func (p *Parser) consumeOperator() (_ string, err error) {
 	defer p.tokens.Rollback(p.tokens.Position, &err)
 
@@ -234,7 +235,7 @@ func (p *Parser) consumeOperator() (_ string, err error) {
 	return "", errors.New("operator expected")
 }
 
-//   Accessor := accessor
+// Accessor := accessor
 func (p *Parser) consumeAccessor() (expr *AccessorExpr, err error) {
 	defer p.tokens.Rollback(p.tokens.Position, &err)
 
@@ -249,7 +250,7 @@ func (p *Parser) consumeAccessor() (expr *AccessorExpr, err error) {
 	}, nil
 }
 
-//   VariableOrFunction := word [ "(" number ")" ]
+// VariableOrFunction := word [ "(" number ")" ]
 func (p *Parser) consumeVariableOrFunction() (expr Expression, err error) {
 	defer p.tokens.Rollback(p.tokens.Position, &err)
 
@@ -271,7 +272,7 @@ func (p *Parser) consumeVariableOrFunction() (expr Expression, err error) {
 	return &VariableExpr{Name: t[0].Value}, nil
 }
 
-//   FunctionArgs := "(" Statements ")"
+// FunctionArgs := "(" Statements ")"
 func (p *Parser) consumeFunctionArgs() (args []*Statement, err error) {
 	defer p.tokens.Rollback(p.tokens.Position, &err)
 
@@ -293,7 +294,7 @@ func (p *Parser) consumeFunctionArgs() (args []*Statement, err error) {
 	return statements, nil
 }
 
-//   QuestionMark := "?"
+// QuestionMark := "?"
 func (p *Parser) consumeQuestionMark() (expr *QuestionMarkExpr, err error) {
 	defer p.tokens.Rollback(p.tokens.Position, &err)
 
@@ -305,7 +306,7 @@ func (p *Parser) consumeQuestionMark() (expr *QuestionMarkExpr, err error) {
 	return &QuestionMarkExpr{}, nil
 }
 
-//   Object := ObjectWithoutKeys | ObjectWithKeys
+// Object := ObjectWithoutKeys | ObjectWithKeys
 func (p *Parser) consumeObject() (expr Expression, err error) {
 	defer p.tokens.Rollback(p.tokens.Position, &err)
 
@@ -316,7 +317,7 @@ func (p *Parser) consumeObject() (expr Expression, err error) {
 	return p.consumeObjectWithKeys()
 }
 
-//   KeyValues := KeyValue
+// KeyValues := KeyValue
 func (p *Parser) consumeKeyValue() (key string, value *Statement, err error) {
 	defer p.tokens.Rollback(p.tokens.Position, &err)
 
@@ -333,7 +334,7 @@ func (p *Parser) consumeKeyValue() (key string, value *Statement, err error) {
 	return t[0].Value, value, nil
 }
 
-//   ObjectWithoutKeys := "{" "}"
+// ObjectWithoutKeys := "{" "}"
 func (p *Parser) consumeObjectWithoutKeys() (expr Expression, err error) {
 	defer p.tokens.Rollback(p.tokens.Position, &err)
 
@@ -342,7 +343,7 @@ func (p *Parser) consumeObjectWithoutKeys() (expr Expression, err error) {
 	return &ObjectExpr{}, err
 }
 
-//   ObjectWithKeys := "{" KeyValues "}"
+// ObjectWithKeys := "{" KeyValues "}"
 func (p *Parser) consumeObjectWithKeys() (expr Expression, err error) {
 	defer p.tokens.Rollback(p.tokens.Position, &err)
 
@@ -363,7 +364,7 @@ func (p *Parser) consumeObjectWithKeys() (expr Expression, err error) {
 	return &ObjectExpr{Data: data}, nil
 }
 
-//   KeyValues := KeyValue NextKeyValue...
+// KeyValues := KeyValue NextKeyValue...
 func (p *Parser) consumeKeyValues() (data map[string]*Statement, err error) {
 	defer p.tokens.Rollback(p.tokens.Position, &err)
 
@@ -386,7 +387,7 @@ func (p *Parser) consumeKeyValues() (data map[string]*Statement, err error) {
 	return data, nil
 }
 
-//   NextKeyValue := "," KeyValue
+// NextKeyValue := "," KeyValue
 func (p *Parser) consumeNextKeyValue() (key string, value *Statement, err error) {
 	defer p.tokens.Rollback(p.tokens.Position, &err)
 

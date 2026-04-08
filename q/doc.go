@@ -1,6 +1,6 @@
 // Package q is the "gedcom query" parser and engine.
 //
-// Language Basics
+// # Language Basics
 //
 // The query is split into expressions. The pipe (|) indicates that the result
 // of one expression is the input into the next expression.
@@ -30,55 +30,55 @@
 // With the example ".Individuals | .Name" on a document that contains two
 // individuals:
 //
-//   [
-//     {
-//       "Nodes": [
-//         {
-//           "Tag": "GIVN",
-//           "Value": "Lucy Alcott"
-//         },
-//         {
-//           "Tag": "SURN",
-//           "Value": "Chauncey"
-//         }
-//       ],
-//       "Tag": "NAME",
-//       "Value": "Lucy Alcott /Chauncey/"
-//     },
-//     {
-//       "Nodes": [
-//         {
-//           "Tag": "GIVN",
-//           "Value": "Sarah"
-//         },
-//         {
-//           "Tag": "SURN",
-//           "Value": "Taylor"
-//         }
-//       ],
-//       "Tag": "NAME",
-//       "Value": "Sarah /Taylor/"
-//     }
-//   ]
+//	[
+//	  {
+//	    "Nodes": [
+//	      {
+//	        "Tag": "GIVN",
+//	        "Value": "Lucy Alcott"
+//	      },
+//	      {
+//	        "Tag": "SURN",
+//	        "Value": "Chauncey"
+//	      }
+//	    ],
+//	    "Tag": "NAME",
+//	    "Value": "Lucy Alcott /Chauncey/"
+//	  },
+//	  {
+//	    "Nodes": [
+//	      {
+//	        "Tag": "GIVN",
+//	        "Value": "Sarah"
+//	      },
+//	      {
+//	        "Tag": "SURN",
+//	        "Value": "Taylor"
+//	      }
+//	    ],
+//	    "Tag": "NAME",
+//	    "Value": "Sarah /Taylor/"
+//	  }
+//	]
 //
 // If this is too verbose for you, here is the same output using
 // ".Individuals | .Name | .String":
 //
-//   [
-//     "Lucy Alcott Chauncey",
-//     "Sarah Taylor"
-//   ]
+//	[
+//	  "Lucy Alcott Chauncey",
+//	  "Sarah Taylor"
+//	]
 //
-// Functions
+// # Functions
 //
 // Some functions are provided as part of the gedcomq language that exist
 // outside of the gedcom package:
 //
-//   Combine(Slices...)
+//	Combine(Slices...)
 //
 // Combine will combine multiple slices of the same type into a single slice.
 //
-//   First(number)
+//	First(number)
 //
 // First returns up to the number of elements in a slice.
 //
@@ -90,7 +90,7 @@
 // There must be exactly one argument and it must be 0 or greater. If the number
 // is greater than the length of the slice all elements are returned.
 //
-//   Last(number)
+//	Last(number)
 //
 // Last returns up to the number of elements in a slice.
 //
@@ -102,18 +102,18 @@
 // There must be exactly one argument and it must be 0 or greater. If the number
 // is greater than the length of the slice all elements are returned.
 //
-//   Length
+//	Length
 //
 // Length returns an integer with the number of items in the slice.
 //
 // This value will be 0 or more. If the input is not a slice then 1 will always
 // be returned.
 //
-//   MergeDocumentsAndIndividuals(doc1, doc2)
+//	MergeDocumentsAndIndividuals(doc1, doc2)
 //
 // Merges two documents while also merging similar individuals.
 //
-//   NodesWithTagPaths(Tags...)
+//	NodesWithTagPaths(Tags...)
 //
 // NodesWithTagPath returns all of the nodes that have an exact tag path. The
 // number of nodes returned can be zero and tag must match the tag path
@@ -121,28 +121,28 @@
 //
 // Find all Death nodes that belong to all individuals:
 //
-//   .Individuals | NodesWithTagPath("DEAT")
+//	.Individuals | NodesWithTagPath("DEAT")
 //
 // From the individuals find all the Date nodes within only the Birth nodes.
 //
-//   .Individuals | NodesWithTagPath("BIRT", "DATE")
+//	.Individuals | NodesWithTagPath("BIRT", "DATE")
 //
 // Combine all of the birth and death dates:
 //
-//   Births are .Individuals | NodesWithTagPath("BIRT", "DATE") | {type: "birth", date: .String};
-//   Deaths are .Individuals | NodesWithTagPath("DEAT", "DATE") | {type: "death", date: .String};
-//   Combine(Births, Deaths)
+//	Births are .Individuals | NodesWithTagPath("BIRT", "DATE") | {type: "birth", date: .String};
+//	Deaths are .Individuals | NodesWithTagPath("DEAT", "DATE") | {type: "death", date: .String};
+//	Combine(Births, Deaths)
 //
 // If the node is nil the result will also be nil.
 //
-//   Only(condition)
+//	Only(condition)
 //
 // The Only function returns a new slice that only contains the entities that
 // have returned true from the condition. For example:
 //
-//   .Individuals | Only(.Age > 100)
+//	.Individuals | Only(.Age > 100)
 //
-// The Question Mark
+// # The Question Mark
 //
 // "?" is a special function that can be used to show all of the possible next
 // functions and accessors. This is useful when exploring data by creating the
@@ -150,23 +150,23 @@
 //
 // For example the following query:
 //
-//   .Individuals | ?
+//	.Individuals | ?
 //
 // Returns (most items removed for brevity):
 //
-//   [
-//     ".AddNode",
-//     ".Age",
-//     ".AgeAt",
-//     ...
-//     ".SurroundingSimilarity",
-//     ".Tag",
-//     ".Value",
-//     "?",
-//     "Length"
-//   ]
+//	[
+//	  ".AddNode",
+//	  ".Age",
+//	  ".AgeAt",
+//	  ...
+//	  ".SurroundingSimilarity",
+//	  ".Tag",
+//	  ".Value",
+//	  "?",
+//	  "Length"
+//	]
 //
-// Variables
+// # Variables
 //
 // Variables allow more complex logic to be processed in separate discreet
 // steps. It also applies in cases where the logic would normally be duplicated
@@ -174,8 +174,8 @@
 //
 // Variable are defined in on of the two forms:
 //
-//   Events are .Individuals | .AllEvents
-//   Name is .Individual | .Name
+//	Events are .Individuals | .AllEvents
+//	Name is .Individual | .Name
 //
 // The keywords "are" and "is" do exactly the same thing. They are both offered
 // to make the semantics of reading the expression easier.
@@ -183,15 +183,15 @@
 // Variables can then be references in separate expressions. For example the
 // following:
 //
-//   .Individuals | .Name | .String
+//	.Individuals | .Name | .String
 //
 // Could also be written as:
 //
-//   Names are .Individuals | .Name; Names | .String
+//	Names are .Individuals | .Name; Names | .String
 //
 // Or even more verbosely as:
 //
-//   Indi is .Individuals; Names are Indi | .Name; Names | .String
+//	Indi is .Individuals; Names are Indi | .Name; Names | .String
 //
 // The semicolon (;) is used to separate variable definitions. The result
 // returned will always be the return value of the last statement.
@@ -199,7 +199,7 @@
 // Available variables will be shown as options with the special Question Mark
 // function.
 //
-// Data Types
+// # Data Types
 //
 // gedcomq does not define strict data types. Instead it will perform an
 // operation as best it can under the conditions provided.
@@ -233,13 +233,13 @@
 // type, such as an IndividualNode they may also have methods available which
 // can be accessed just like properties.
 //
-// Operators
+// # Operators
 //
 // gedcomq supports several binary operators that can be used for comparison of
 // values. All operators will return a boolean (true/false) result:
 //
-//   =  (equal)
-//   != (not equal)
+//	=  (equal)
+//	!= (not equal)
 //
 // If the left and right both represent numeric values then the values are
 // compared numerically. That is to say 1.23 and "1.2300" are equal.
@@ -251,10 +251,10 @@
 //
 // Not equal works exactly opposite.
 //
-//   >  (greater than)
-//   >= (greater than or equal)
-//   <  (less than)
-//   >= (less than or equal)
+//	>  (greater than)
+//	>= (greater than or equal)
+//	<  (less than)
+//	>= (less than or equal)
 //
 // If the left and right both represent numeric values then the values are
 // compared numerically. That is to say 1.2301 is greater than "1.23".
@@ -265,44 +265,44 @@
 // One string is greater than another string by comparing each of the
 // characters. So "Jon" is greater than "John" because "n" is greater than "h".
 //
-// Creating Objects
+// # Creating Objects
 //
 // Custom objects can be constructed on one more items. For example:
 //
-//   .Individuals | { name: .Name | .String, born: .Birth | .String }
+//	.Individuals | { name: .Name | .String, born: .Birth | .String }
 //
 // May output something similar to:
 //
-//   [
-//     {
-//       "born": "1863",
-//       "name": "Charles W Chauncey"
-//     },
-//     {
-//       "born": "12 Dec 1859",
-//       "name": "Lucy Alcott Chauncey"
-//     },
-//     {
-//       "born": "1831",
-//       "name": "Sarah Taylor"
-//     }
-//   ]
+//	[
+//	  {
+//	    "born": "1863",
+//	    "name": "Charles W Chauncey"
+//	  },
+//	  {
+//	    "born": "12 Dec 1859",
+//	    "name": "Lucy Alcott Chauncey"
+//	  },
+//	  {
+//	    "born": "1831",
+//	    "name": "Sarah Taylor"
+//	  }
+//	]
 //
 // It's also worth noting that object can contain zero key-value pairs, such as:
 //
-//   .Individuals | {}
+//	.Individuals | {}
 //
 // This would output (using the same individuals in the previous example):
 //
-//   [
-//     {},
-//     {},
-//     {}
-//   ]
+//	[
+//	  {},
+//	  {},
+//	  {}
+//	]
 //
 // Also see the Examples below.
 //
-// Outputting In Other Formats
+// # Outputting In Other Formats
 //
 // There are several formatters (see Formatter interface) that allow the result
 // of a query to be output in different ways. Such as pretty json or CSV.
@@ -310,76 +310,75 @@
 // This can be controlled with the "-format" option with gedcomq, or by
 // instantiating one of the formatter instances in your own code.
 //
-// Examples
+// # Examples
 //
 // Count all individuals in a document:
 //
-//   .Individuals | Length
+//	.Individuals | Length
 //
 // result:
 //
-//   3401
+//	3401
 //
 // Retrieve the basic details of the first 3 individuals:
 //
-//   .Individuals | First(3) | { name: .Name | .String, born: .Birth | .String, died: .Death | .String}
+//	.Individuals | First(3) | { name: .Name | .String, born: .Birth | .String, died: .Death | .String}
 //
 // result:
 //
-//   [
-//     {
-//       "born": "6 Dec 1636",
-//       "died": "2 Dec 1713",
-//       "name": "Gershom Bulkeley"
-//     },
-//     {
-//       "born": "5 Nov 1592",
-//       "died": "19 Feb 1672",
-//       "name": "Charles Chauncey"
-//     },
-//     {
-//       "born": "1408",
-//       "died": "7 May 1479",
-//       "name": "John Chauncy Esq."
-//     },
-//   ]
+//	[
+//	  {
+//	    "born": "6 Dec 1636",
+//	    "died": "2 Dec 1713",
+//	    "name": "Gershom Bulkeley"
+//	  },
+//	  {
+//	    "born": "5 Nov 1592",
+//	    "died": "19 Feb 1672",
+//	    "name": "Charles Chauncey"
+//	  },
+//	  {
+//	    "born": "1408",
+//	    "died": "7 May 1479",
+//	    "name": "John Chauncy Esq."
+//	  },
+//	]
 //
 // Retrieve the names of individuals that have a given name (first name) of
 // "John".
 //
-//   .Individuals | .Name | Only(.GivenName = "John") | .String
+//	.Individuals | .Name | Only(.GivenName = "John") | .String
 //
 // result:
 //
-//   [
-//     "John Chaunce",
-//     "John Chaunce",
-//     "John Chance",
-//     "John Unett",
-//     "John Chance",
-//     "John de Chauncy",
-//   ]
+//	[
+//	  "John Chaunce",
+//	  "John Chaunce",
+//	  "John Chance",
+//	  "John Unett",
+//	  "John Chance",
+//	  "John de Chauncy",
+//	]
 //
 // Find all of the living people with their current age:
 //
-//   .Individuals | Only(.IsLiving) | { name: .Name | .String, age: .Age | .String}
+//	.Individuals | Only(.IsLiving) | { name: .Name | .String, age: .Age | .String}
 //
 // result:
 //
-//   [
-//     {
-//       "age": "82y 6m",
-//       "name": "Robert Walter Chance"
-//     },
-//     {
-//       "age": "~ 90y 10m",
-//       "name": "Sir Robert Temple Armstrong"
-//     },
-//   ]
+//	[
+//	  {
+//	    "age": "82y 6m",
+//	    "name": "Robert Walter Chance"
+//	  },
+//	  {
+//	    "age": "~ 90y 10m",
+//	    "name": "Sir Robert Temple Armstrong"
+//	  },
+//	]
 //
 // Merge two GEDCOM files (full command):
 //
-//   gedcomq -gedcom file1.ged -gedcom file2.ged -format gedcom \
-//     'MergeDocumentsAndIndividuals(Document1, Document2)' > merged.ged
-//
+//	gedcomq -gedcom file1.ged -gedcom file2.ged -format gedcom \
+//	  'MergeDocumentsAndIndividuals(Document1, Document2)' > merged.ged
 package q

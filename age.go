@@ -92,11 +92,11 @@ func (age Age) Years() float64 {
 
 // String returns an age in one of the following forms:
 //
-//   unknown     -- if IsKnown is false
-//   20y         -- living age is very close to the whole year
-//   20y 5m      -- living age with 5 months
-//   ~ 25y       -- if IsEstimated is true
-//   ~ 22y 11m   -- same as above
+//	unknown     -- if IsKnown is false
+//	20y         -- living age is very close to the whole year
+//	20y 5m      -- living age with 5 months
+//	~ 25y       -- if IsEstimated is true
+//	~ 22y 11m   -- same as above
 //
 // String will not consider the age constraint.
 //

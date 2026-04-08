@@ -36,7 +36,7 @@ const (
 //
 // The code and comment above has been copied from:
 //
-//   https://github.com/xrash/smetrics/blob/master/jaro-winkler.go
+//	https://github.com/xrash/smetrics/blob/master/jaro-winkler.go
 //
 // A big thanks to Felipe (@xrash) for the explanation and code. It you read
 // this, I copied the code to avoid the need to have a dependency manager for

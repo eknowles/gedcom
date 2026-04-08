@@ -80,7 +80,7 @@ type Tag struct {
 
 // http://wiki-en.genealogy.net/GEDCOM-Tags
 //
-// Definition of all standard GEDCOM-Tags
+// # Definition of all standard GEDCOM-Tags
 //
 // List of all field names (tags), used in GEDCOM Specification 5.5, or (with a
 // special comment) or added/deleted in GEDCOM 5.5.1. These field names are used

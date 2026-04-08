@@ -87,49 +87,49 @@ const (
 //
 // Now into the specification. There are two basic forms of a DATE value:
 //
-//   between date and date
-//   date
+//	between date and date
+//	date
 //
 // The second case is actually equivalent to the first case the the same "date"
 // substituted twice.
 //
 // The "between" keyword can be any of (non case sensitive):
 //
-//   between
-//   bet
-//   bet.
-//   from
+//	between
+//	bet
+//	bet.
+//	from
 //
 // The "and" keyword can be one of (non case sensitive):
 //
-//   -
-//   and
-//   to
+//	-
+//	and
+//	to
 //
 // A "date" has three basic forms:
 //
-//   prefix? day month year
-//   prefix? month year
-//   prefix? year
+//	prefix? day month year
+//	prefix? month year
+//	prefix? year
 //
 // The "prefix" is optional and can be used to indicate if the date is
 // approximate or not with one of the following keywords:
 //
-//   abt
-//   abt.
-//   about
-//   c.
-//   circa
+//	abt
+//	abt.
+//	about
+//	c.
+//	circa
 //
 // Or, the "prefix" can be used to signify unbounded dates with one of the
 // following keywords:
 //
-//   after
-//   aft
-//   aft.
-//   before
-//   bef
-//   bef.
+//	after
+//	aft
+//	aft.
+//	before
+//	bef
+//	bef.
 //
 // The "day" must be an integer between 1 and 31 and can have a single
 // proceeding zero, like "03". The day should be valid against the month used.
@@ -138,29 +138,29 @@ const (
 //
 // The "month" must be one of the following strings (case in-sensitive):
 //
-//   apr
-//   april
-//   aug
-//   august
-//   dec
-//   december
-//   feb
-//   february
-//   jan
-//   january
-//   jul
-//   july
-//   jun
-//   june
-//   mar
-//   march
-//   may
-//   nov
-//   november
-//   oct
-//   october
-//   sep
-//   september
+//	apr
+//	april
+//	aug
+//	august
+//	dec
+//	december
+//	feb
+//	february
+//	jan
+//	january
+//	jul
+//	july
+//	jun
+//	june
+//	mar
+//	march
+//	may
+//	nov
+//	november
+//	oct
+//	october
+//	sep
+//	september
 //
 // The "year" must be an integer with a value between 0 and 9999 (as to conform
 // to the restrictions of the Go time package). It may be possible to parse
@@ -305,16 +305,15 @@ func (date Date) Time() time.Time {
 
 // String returns the date in one of the three forms:
 //
-//   17 Jul 1890
-//   Jul 1890
-//   1890
+//	17 Jul 1890
+//	Jul 1890
+//	1890
 //
 // All forms of the date may also be proceeded with one of the constraints:
 //
-//   Abt.
-//   Aft.
-//   Bef.
-//
+//	Abt.
+//	Aft.
+//	Bef.
 func (date Date) String() string {
 	day := ""
 	if date.Day != 0 {
@@ -454,12 +453,12 @@ func (date Date) IsZero() bool {
 //
 // Otherwise the comparison used is selected from the following matrix:
 //
-//          ----------- Left ----------
-//          Exact  About  Before  After
-//   Exact    A      A      B       C
-//   About    A      A      D       D
-//  Before    C      D      C       D
-//   After    B      D      D       B
+//	        ----------- Left ----------
+//	        Exact  About  Before  After
+//	 Exact    A      A      B       C
+//	 About    A      A      D       D
+//	Before    C      D      C       D
+//	 After    B      D      D       B
 //
 // A. A match if the day, month and year are all equal.
 //

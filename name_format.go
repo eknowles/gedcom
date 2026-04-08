@@ -5,22 +5,21 @@ package gedcom
 // The format is a string that contains placeholders and works similar to
 // fmt.Printf where placeholders represent different components of the name:
 //
-//   %% "%"
-//   %f GivenName
-//   %l Surname
-//   %m SurnamePrefix
-//   %p Prefix
-//   %s Suffix
-//   %t Title
+//	%% "%"
+//	%f GivenName
+//	%l Surname
+//	%m SurnamePrefix
+//	%p Prefix
+//	%s Suffix
+//	%t Title
 //
 // Each of the letters may be in upper case to convert the name part to upper
 // case also. Whitespace before, after and between name components will be
 // removed:
 //
-//   name.Format("%l, %f")     // "Smith, Bob"
-//   name.Format("%f %L")      // "Bob SMITH"
-//   name.Format("%f %m (%l)") // "Bob (Smith)"
-//
+//	name.Format("%l, %f")     // "Smith, Bob"
+//	name.Format("%f %L")      // "Bob SMITH"
+//	name.Format("%f %m (%l)") // "Bob (Smith)"
 type NameFormat string
 
 // NameFormat constants can be used with NameNode.Format.
@@ -47,9 +46,8 @@ const (
 // It will return the original name and false if the name is not known. This
 // allows custom formats to be passed through like:
 //
-//   NewNameFormatByName("gedcom") // "%t %p %f %m /%l/ %s", true
-//   NewNameFormatByName("%L %f")  // "%L %f", false
-//
+//	NewNameFormatByName("gedcom") // "%t %p %f %m /%l/ %s", true
+//	NewNameFormatByName("%L %f")  // "%L %f", false
 func NewNameFormatByName(name string) (NameFormat, bool) {
 	switch name {
 	case "written":

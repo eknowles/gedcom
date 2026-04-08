@@ -15,7 +15,7 @@ package gedcom
 //
 // If you would like a completely new copy of the data you can use:
 //
-//   Flatten(DeepCopy(node))
+//	Flatten(DeepCopy(node))
 //
 // The document must be provided for nodes that need a document context (such as
 // individuals). You may pass in the same document.

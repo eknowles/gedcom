@@ -9,27 +9,28 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
-//                              4 Sep    19 Sep
-//                            3 Sep |    | 20 Sep
-//                          2 Sep | |    | | 21 Sep
-//                        1 Sep | | |    | | | 30 Sep
-//                            v v v v    v v v v
-//   Left:                    .   |========|   .
-//   Right                    .                .
-//     Equal:                 .   |========|   .
-//     Inside:                .   | <====> |   .
-//     InsideStart:           .   |======> |   .
-//     InsideEnd:             .   | <======|   .
-//     Outside:               <===+========+===>
-//     OutsideStart:          .   |========+===>
-//     OutsideEnd:            <===+========|   .
-//     PartiallyBefore:       <===+=>      |   .
-//     PartiallyAfter:        .   |      <=+===>
-//     Before:                <===|        |   .
-//     After:                 .   |        |===>
-//     EntirelyBefore:        <=> |        |   .
-//     EntirelyAfter:         .   |        | <=>
+//	      4 Sep    19 Sep
+//	    3 Sep |    | 20 Sep
+//	  2 Sep | |    | | 21 Sep
+//	1 Sep | | |    | | | 30 Sep
+//	    v v v v    v v v v
 //
+// Left:                    .   |========|   .
+// Right                    .                .
+//
+//	Equal:                 .   |========|   .
+//	Inside:                .   | <====> |   .
+//	InsideStart:           .   |======> |   .
+//	InsideEnd:             .   | <======|   .
+//	Outside:               <===+========+===>
+//	OutsideStart:          .   |========+===>
+//	OutsideEnd:            <===+========|   .
+//	PartiallyBefore:       <===+=>      |   .
+//	PartiallyAfter:        .   |      <=+===>
+//	Before:                <===|        |   .
+//	After:                 .   |        |===>
+//	EntirelyBefore:        <=> |        |   .
+//	EntirelyAfter:         .   |        | <=>
 var dateRangeCompareTest = map[string]struct {
 	comparison    gedcom.DateRangeComparison
 	before, after bool

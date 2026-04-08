@@ -68,8 +68,8 @@ type individualSimilarity struct {
 // The easiest way to explain how the process works is by working through an
 // example. Consider the two following slices of individuals:
 //
-//   [a, b, c]
-//   [d, e]
+//	[a, b, c]
+//	[d, e]
 //
 // There is 5 individuals in total, but the largest slice length is 3.
 //
@@ -77,21 +77,21 @@ type individualSimilarity struct {
 // inputs. This is the expensive part because it takes O(nm) time where n and m
 // are the slice lengths respectively. The results may look like:
 //
-//   a.Similarity(d) = 0.234
-//   a.Similarity(e) = 0.123
-//   b.Similarity(d) = 0.546
-//   b.Similarity(e) = 0.678
-//   c.Similarity(d) = 0.235
-//   c.Similarity(e) = 0.456
+//	a.Similarity(d) = 0.234
+//	a.Similarity(e) = 0.123
+//	b.Similarity(d) = 0.546
+//	b.Similarity(e) = 0.678
+//	c.Similarity(d) = 0.235
+//	c.Similarity(e) = 0.456
 //
 // The results are sorted by their similarity score, highest first:
 //
-//   b.Similarity(e) = 0.678
-//   b.Similarity(d) = 0.546
-//   c.Similarity(e) = 0.456
-//   c.Similarity(d) = 0.235
-//   a.Similarity(d) = 0.234
-//   a.Similarity(e) = 0.123
+//	b.Similarity(e) = 0.678
+//	b.Similarity(d) = 0.546
+//	c.Similarity(e) = 0.456
+//	c.Similarity(d) = 0.235
+//	a.Similarity(d) = 0.234
+//	a.Similarity(e) = 0.123
 //
 // In reality the scores should be closer to 1.0 for many of the individuals,
 // but I will use a wide range of values for this example.
@@ -109,12 +109,12 @@ type individualSimilarity struct {
 //
 // The process continues and can be visualised like this:
 //
-//   b.Similarity(e) = 0.678   b = e
-//   b.Similarity(d) = 0.546   b already matched
-//   c.Similarity(e) = 0.456   e already matched
-//   c.Similarity(d) = 0.235   c = d
-//   a.Similarity(d) = 0.234   d already matched
-//   a.Similarity(e) = 0.123   e already matched
+//	b.Similarity(e) = 0.678   b = e
+//	b.Similarity(d) = 0.546   b already matched
+//	c.Similarity(e) = 0.456   e already matched
+//	c.Similarity(d) = 0.235   c = d
+//	a.Similarity(d) = 0.234   d already matched
+//	a.Similarity(e) = 0.123   e already matched
 //
 // There should be the same amount of matches as the smallest slice size. As we
 // can see the two matches is the same number as the smallest slice.
@@ -128,7 +128,7 @@ type individualSimilarity struct {
 //
 // The returned score is now the average:
 //
-//   (0.678 + 0.234 + 0.5) / 3 = 0.4707
+//	(0.678 + 0.234 + 0.5) / 3 = 0.4707
 //
 // There are some known caveats to the algorithm:
 //
@@ -630,10 +630,9 @@ func (c IndividualComparison) stringOrDefault(s fmt.Stringer, def string) string
 
 // String returns the comparison in a human-readable format, like one of:
 //
-//   John Smith <-> John H Smith (0.833333)
-//   Jane Doe <-> (none) (?)
-//   (none) <-> Joe Bloggs (?)
-//
+//	John Smith <-> John H Smith (0.833333)
+//	Jane Doe <-> (none) (?)
+//	(none) <-> Joe Bloggs (?)
 func (c IndividualComparison) String() string {
 	left := c.stringOrDefault(c.Left, "(none)")
 	right := c.stringOrDefault(c.Right, "(none)")

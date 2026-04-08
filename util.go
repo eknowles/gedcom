@@ -40,7 +40,7 @@ func Atoi(s string) int {
 // CleanSpace works similar to strings.TrimSpace except that it also replaces
 // consecutive spaces anywhere in the string with a single space.
 //
-//   "  Foo   bar BAZ" -> "Foo bar BAZ"
+//	"  Foo   bar BAZ" -> "Foo bar BAZ"
 //
 // CleanSpace is used in many places throughout the library to clean values that
 // are known to not place any significance on their spaces. Such as individual
@@ -61,8 +61,7 @@ func CleanSpace(s string) string {
 //
 // First is useful in combination with other functions like:
 //
-//   birth := First(individual.Births())
-//
+//	birth := First(individual.Births())
 func First(nodes interface{}) Node {
 	n := Compound(nodes)
 	if len(n) == 0 {
@@ -77,8 +76,7 @@ func First(nodes interface{}) Node {
 //
 // Last is useful in combination with other functions like:
 //
-//   death := Last(individual.Deaths())
-//
+//	death := Last(individual.Deaths())
 func Last(nodes interface{}) Node {
 	n := Compound(nodes)
 	for i := len(n) - 1; i >= 0; i-- {
@@ -103,9 +101,9 @@ func Value(node Node) string {
 // Compound is a easier way to join a collection of nodes. The input type is
 // flexible to allow the following types:
 //
-//   nil
-//   Node
-//   Nodes
+//	nil
+//	Node
+//	Nodes
 //
 // If any of the inputs are not one of the above types then a panic is raised.
 //

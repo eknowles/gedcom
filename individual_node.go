@@ -441,7 +441,7 @@ func (node *IndividualNode) EstimatedDeathDate() (date *DateNode, isDeathEvent b
 // individuals name, estimated birth and estimated death date and is calculated
 // as follows:
 //
-//   similarity = (nameSimilarity + birthSimilarity + deathSimilarity) / 3.0
+//	similarity = (nameSimilarity + birthSimilarity + deathSimilarity) / 3.0
 //
 // Individual names are compared with the StringSimilarity function that does
 // not consider the punctuation and extra spacing.
@@ -786,10 +786,10 @@ func (node *IndividualNode) ageAt(at DateRange) (Age, Age) {
 
 // String returns a human-readable representation of the individual like:
 //
-//   (no name) (b. Aft. 1983)
-//   Bob Smith (b. 1943)
-//   John Chance
-//   Jane Doe (b. 3 Apr 1923, bur. Abt. 1943)
+//	(no name) (b. Aft. 1983)
+//	Bob Smith (b. 1943)
+//	John Chance
+//	Jane Doe (b. 3 Apr 1923, bur. Abt. 1943)
 //
 // Ideally it will use birth (b.) and death (d.) if available. However, it will
 // fall back to the baptism (bap.) or burial (bur.) respectively.

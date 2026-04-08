@@ -29,10 +29,9 @@ func NewIndividualComparison(Left, Right *IndividualNode, Similarity *Surroundin
 
 // String returns each comparison string on its own like, like:
 //
-//   John Smith <-> John H Smith (0.833333)
-//   Jane Doe <-> (none) (?)
-//   (none) <-> Joe Bloggs (?)
-//
+//	John Smith <-> John H Smith (0.833333)
+//	Jane Doe <-> (none) (?)
+//	(none) <-> Joe Bloggs (?)
 func (comparisons IndividualComparisons) String() string {
 	lines := []string{}
 

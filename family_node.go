@@ -144,19 +144,19 @@ func (node *FamilyNode) SetHusband(individual *IndividualNode) *FamilyNode {
 			return node
 		}
 		nodes := husband.Nodes()
-		
+
 		for _, subNode := range nodes {
 			if subNode.Tag() == TagFamilySpouse && subNode.Value() == node.Identifier() {
 				husband.DeleteNode(subNode)
 			}
 		}
-		
+
 		DeleteNodesWithTag(node, TagHusband)
 		node.husband = nil
 		node.cachedHusband = true
 		return node
 	}
-	
+
 	n := NewNode(TagFamilySpouse, node.Identifier(), "")
 	individual.AddNode(n)
 
@@ -176,7 +176,7 @@ func (node *FamilyNode) SetWife(individual *IndividualNode) *FamilyNode {
 				wife.DeleteNode(subNode)
 			}
 		}
-		
+
 		DeleteNodesWithTag(node, TagWife)
 		node.wife = nil
 		node.cachedWife = true
@@ -185,7 +185,7 @@ func (node *FamilyNode) SetWife(individual *IndividualNode) *FamilyNode {
 
 	n := NewNode(TagFamilySpouse, node.Identifier(), "")
 	individual.AddNode(n)
-	
+
 	return node.SetWifePointer(individual.Pointer())
 }
 

@@ -19,7 +19,7 @@ func newChildNodeWithIndividual(family *FamilyNode, individual *IndividualNode) 
 
 	famChild := NewNode(TagFamilyChild, family.Identifier(), "")
 	individual.AddNode(famChild)
-	
+
 	return newChildNode(family, individual.Identifier())
 }
 

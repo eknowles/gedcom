@@ -12,8 +12,8 @@ var uuidRegexp = regexp.MustCompile(`^[0-9a-f]{32}$`)
 
 // NewUUIDFromString returns a valid UUID in one of the forms:
 //
-//   EE13561DDB204985BFFDEEBF82A5226C
-//   e0d4d387-618a-4713-ab3b-5fa3500b7a75
+//	EE13561DDB204985BFFDEEBF82A5226C
+//	e0d4d387-618a-4713-ab3b-5fa3500b7a75
 //
 // An error is returned if there is more than 32 hexadecimal characters.
 func NewUUIDFromString(s string) (UUID, error) {
@@ -31,8 +31,7 @@ func NewUUIDFromString(s string) (UUID, error) {
 
 // String returns a lowercase, hyphenated UUID in the form of:
 //
-//   e0d4d387-618a-4713-ab3b-5fa3500b7a75
-//
+//	e0d4d387-618a-4713-ab3b-5fa3500b7a75
 func (uuid UUID) String() string {
 	return string(uuid)
 }

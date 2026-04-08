@@ -3,7 +3,7 @@
 //
 // The basic syntax of the tool is:
 //
-//   gedcom query -gedcom file.ged '.Individuals | .Name'
+//	gedcom query -gedcom file.ged '.Individuals | .Name'
 //
 // You can find the full language documentation in the q package:
 //

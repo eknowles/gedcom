@@ -61,7 +61,7 @@ func (node *SimpleNode) Identifier() string {
 	if node == nil {
 		return ""
 	}
-	
+
 	return fmt.Sprintf("@%s@", node.pointer)
 }
 

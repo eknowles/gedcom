@@ -60,7 +60,7 @@ func NodesWithTag(node Node, tag Tag) (result Nodes) {
 // number of nodes returned can be zero and tag must match the tag path
 // completely and exactly.
 //
-//   birthPlaces := NodesWithTagPath(individual, TagBirth, TagPlace)
+//	birthPlaces := NodesWithTagPath(individual, TagBirth, TagPlace)
 //
 // If the node is nil the result will also be nil.
 func NodesWithTagPath(node Node, tagPath ...Tag) Nodes {

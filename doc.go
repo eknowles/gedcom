@@ -1,7 +1,7 @@
 // Package gedcom contains functionality for encoding, decoding, traversing,
 // manipulating and comparing of GEDCOM data.
 //
-// Installation
+// # Installation
 //
 // You can download the latest binaries for macOS, Windows and Linux on the
 // Releases page: https://github.com/elliotchance/gedcom/releases
@@ -10,6 +10,5 @@
 //
 // If you wish to build it from source you must install the dependencies with:
 //
-//   dep ensure
-//
+//	dep ensure
 package gedcom

@@ -9,22 +9,22 @@ import "fmt"
 // several variations of results to be considered. It's easiest to explain
 // visually where Left and Right are the date range operands respectively:
 //
-//                                                       Method returns true:
-//   Left:                        |========|
-//   Right:
-//     Equal:                     |========|             IsEqual()
-//     Inside:                    | <====> |             IsPartiallyEqual()
-//     InsideStart:               |======> |             IsPartiallyEqual()
-//     InsideEnd:                 | <======|             IsPartiallyEqual()
-//     Outside:               <===+========+===>         IsPartiallyEqual()
-//     OutsideStart:              |========+===>         IsPartiallyEqual()
-//     OutsideEnd:            <===+========|             IsPartiallyEqual()
-//     PartiallyBefore:       <===+===>    |             IsPartiallyEqual()
-//     PartiallyAfter:            |     <==+===>         IsPartiallyEqual()
-//     Before:                <===|        |             IsNotEqual()
-//     After:                     |        |===>         IsNotEqual()
-//     EntirelyBefore:        <=> |        |             IsNotEqual()
-//     EntirelyAfter:             |        | <=>         IsNotEqual()
+//	                                                    Method returns true:
+//	Left:                        |========|
+//	Right:
+//	  Equal:                     |========|             IsEqual()
+//	  Inside:                    | <====> |             IsPartiallyEqual()
+//	  InsideStart:               |======> |             IsPartiallyEqual()
+//	  InsideEnd:                 | <======|             IsPartiallyEqual()
+//	  Outside:               <===+========+===>         IsPartiallyEqual()
+//	  OutsideStart:              |========+===>         IsPartiallyEqual()
+//	  OutsideEnd:            <===+========|             IsPartiallyEqual()
+//	  PartiallyBefore:       <===+===>    |             IsPartiallyEqual()
+//	  PartiallyAfter:            |     <==+===>         IsPartiallyEqual()
+//	  Before:                <===|        |             IsNotEqual()
+//	  After:                     |        |===>         IsNotEqual()
+//	  EntirelyBefore:        <=> |        |             IsNotEqual()
+//	  EntirelyAfter:             |        | <=>         IsNotEqual()
 //
 // The Simplified value is the DateRangeComparisonSimplified value which is
 // derived from DateRangeComparison.Simplified().
