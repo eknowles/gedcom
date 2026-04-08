@@ -20,7 +20,7 @@ func NewUUIDFromString(s string) (UUID, error) {
 	s2 := strings.Replace(s, "-", "", -1)
 	s2 = strings.ToLower(s2)
 	if !uuidRegexp.MatchString(s2) {
-		return "", fmt.Errorf("invalid UUID: " + s)
+		return "", fmt.Errorf("invalid UUID: %s", s)
 	}
 
 	uuid := fmt.Sprintf("%s-%s-%s-%s-%s",
