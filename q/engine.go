@@ -3,7 +3,7 @@ package q
 import (
 	"fmt"
 
-	"github.com/elliotchance/gedcom/v39"
+	"github.com/eknowles/gedcom/v39"
 )
 
 // Engine is the compiled query. It is able to evaluate the entire query.

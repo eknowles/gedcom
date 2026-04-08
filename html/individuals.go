@@ -4,7 +4,7 @@ import (
 	"regexp"
 	"strings"
 
-	"github.com/elliotchance/gedcom/v39"
+	"github.com/eknowles/gedcom/v39"
 )
 
 var alnumOrDashRegexp = regexp.MustCompile("[^a-z_0-9-]+")

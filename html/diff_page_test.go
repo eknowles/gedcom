@@ -5,8 +5,8 @@ import (
 
 	"bytes"
 
-	"github.com/elliotchance/gedcom/v39"
-	"github.com/elliotchance/gedcom/v39/html"
+	"github.com/eknowles/gedcom/v39"
+	"github.com/eknowles/gedcom/v39/html"
 	"github.com/stretchr/testify/assert"
 )
 

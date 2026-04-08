@@ -3,8 +3,8 @@ package html_test
 import (
 	"testing"
 
-	"github.com/elliotchance/gedcom/v39"
-	"github.com/elliotchance/gedcom/v39/html"
+	"github.com/eknowles/gedcom/v39"
+	"github.com/eknowles/gedcom/v39/html"
 )
 
 func TestIndividualDates_WriteHTMLTo(t *testing.T) {

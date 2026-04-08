@@ -9,7 +9,7 @@ import (
 	"strings"
 	"unicode"
 
-	"github.com/elliotchance/gedcom/v39"
+	"github.com/eknowles/gedcom/v39"
 )
 
 type CSVFormatter struct {

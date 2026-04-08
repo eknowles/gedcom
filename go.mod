@@ -1,4 +1,4 @@
-module github.com/elliotchance/gedcom/v39
+module github.com/eknowles/gedcom/v39
 
 go 1.26
 

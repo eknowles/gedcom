@@ -3,7 +3,7 @@ package gedcom_test
 import (
 	"testing"
 
-	"github.com/elliotchance/gedcom/v39"
+	"github.com/eknowles/gedcom/v39"
 	"github.com/stretchr/testify/assert"
 )
 
@@ -416,7 +416,7 @@ var mergeDocumentsTests = map[string]struct {
 		}),
 	},
 
-	// https://github.com/elliotchance/gedcom/issues/301
+	// https://github.com/eknowles/gedcom/issues/301
 	"Issue301": {
 		left: newDocumentFromString(`
 0 HEAD

@@ -7,16 +7,16 @@
 //
 // You can find the full language documentation in the q package:
 //
-// https://godoc.org/github.com/elliotchance/gedcom/q
+// https://godoc.org/github.com/eknowles/gedcom/q
 package main
 
 import (
 	"flag"
 	"os"
 
-	"github.com/elliotchance/gedcom/v39"
-	"github.com/elliotchance/gedcom/v39/q"
-	"github.com/elliotchance/gedcom/v39/util"
+	"github.com/eknowles/gedcom/v39"
+	"github.com/eknowles/gedcom/v39/q"
+	"github.com/eknowles/gedcom/v39/util"
 )
 
 func runQueryCommand() {

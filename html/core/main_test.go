@@ -4,7 +4,7 @@ import (
 	"bytes"
 	"testing"
 
-	"github.com/elliotchance/gedcom/v39/html/core"
+	"github.com/eknowles/gedcom/v39/html/core"
 	"github.com/elliotchance/tf"
 	"github.com/stretchr/testify/assert"
 )

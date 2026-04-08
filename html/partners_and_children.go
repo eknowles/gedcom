@@ -3,8 +3,8 @@ package html
 import (
 	"io"
 
-	"github.com/elliotchance/gedcom/v39"
-	"github.com/elliotchance/gedcom/v39/html/core"
+	"github.com/eknowles/gedcom/v39"
+	"github.com/eknowles/gedcom/v39/html/core"
 )
 
 // PartnersAndChildren show the partners and/or children connected to the

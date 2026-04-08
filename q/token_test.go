@@ -5,7 +5,7 @@ import (
 
 	"errors"
 
-	"github.com/elliotchance/gedcom/v39/q"
+	"github.com/eknowles/gedcom/v39/q"
 	"github.com/elliotchance/tf"
 	"github.com/stretchr/testify/assert"
 )

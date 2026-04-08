@@ -4,7 +4,7 @@
 // # Installation
 //
 // You can download the latest binaries for macOS, Windows and Linux on the
-// Releases page: https://github.com/elliotchance/gedcom/releases
+// Releases page: https://github.com/eknowles/gedcom/releases
 //
 // This will not require you to install Go or any other dependencies.
 //

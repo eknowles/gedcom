@@ -5,7 +5,7 @@ import (
 	"io"
 	"reflect"
 
-	"github.com/elliotchance/gedcom/v39"
+	"github.com/eknowles/gedcom/v39"
 )
 
 type GEDCOMFormatter struct {

@@ -3,7 +3,7 @@ package gedcom
 import (
 	"flag"
 
-	"github.com/elliotchance/gedcom/v39/util"
+	"github.com/eknowles/gedcom/v39/util"
 )
 
 type FilterFlags struct {

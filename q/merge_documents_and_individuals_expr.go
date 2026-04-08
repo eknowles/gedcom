@@ -4,7 +4,7 @@ import (
 	"errors"
 	"fmt"
 
-	"github.com/elliotchance/gedcom/v39"
+	"github.com/eknowles/gedcom/v39"
 )
 
 // MergeDocumentsAndIndividualsExpr is a function. See Evaluate.

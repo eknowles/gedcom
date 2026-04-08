@@ -3,7 +3,7 @@ package core_test
 import (
 	"testing"
 
-	"github.com/elliotchance/gedcom/v39/html/core"
+	"github.com/eknowles/gedcom/v39/html/core"
 )
 
 func TestColumn_WriteHTMLTo(t *testing.T) {
