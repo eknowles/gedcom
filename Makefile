@@ -20,4 +20,8 @@ zip:
 	go build -o bin/gedcom$(EXT) ./cmd/gedcom
 	zip gedcom-$(NAME).zip -r bin
 
+test-file:
+	go build -o ./bin/gedcom ./cmd/gedcom
+	./bin/gedcom publish -gedcom ./gedcom.ged -output-dir output -allow-invalid-indents
+
 .PHONY: test zip

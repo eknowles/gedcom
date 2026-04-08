@@ -4,3 +4,6 @@
 /gh-md-toc
 /coverage.txt
 ./bin/*
+
+gedcom.ged
+output/
