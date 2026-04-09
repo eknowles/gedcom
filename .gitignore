@@ -5,5 +5,6 @@
 /coverage.txt
 ./bin/*
 
-gedcom.ged
+*.ged
+*.surql
 output/

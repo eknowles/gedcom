@@ -20,8 +20,12 @@ zip:
 	go build -o bin/gedcom$(EXT) ./cmd/gedcom
 	zip gedcom-$(NAME).zip -r bin
 
-test-file:
+sql:
 	go build -o ./bin/gedcom ./cmd/gedcom
-	./bin/gedcom publish -gedcom ./gedcom.ged -output-dir output -allow-invalid-indents
+	./bin/gedcom surrealdb -gedcom examples/gedcom.ged -output examples/gedcom.surql -allow-invalid-indents
+	#./bin/gedcom publish -gedcom ./gedcom.ged -output-dir output -allow-invalid-indents
+	echo 'REMOVE DATABASE IF EXISTS main;' | surreal sql -u root -p root --ns main --db main
+	surreal import -e http://localhost:8000/sql -u root -p root --ns main --db main \
+		examples/gedcom.surql
 
 .PHONY: test zip

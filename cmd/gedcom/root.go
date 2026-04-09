@@ -86,6 +86,12 @@ func commandSpecs() []cliCommand {
 			example:   "gedcom query -gedcom tree.ged '.Individuals | length'",
 		},
 		{
+			name:      "surrealdb",
+			summary:   "Export to SurrealDB format",
+			runLegacy: runSurrealDBCommand,
+			example:   "gedcom surrealdb -gedcom tree.ged -output gedcom.surql",
+		},
+		{
 			name:      "tune",
 			summary:   "Calculate ideal weights and similarities",
 			runLegacy: runTuneCommand,
