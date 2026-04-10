@@ -41,6 +41,22 @@ func (node *NameNode) GivenName() string {
 	return CleanSpace(node.parts()[1])
 }
 
+// SecondaryGivenName is the secondary given name, also known as middle name(s).
+// This is often stored in the SECG tag.
+func (node *NameNode) SecondaryGivenName() string {
+	if node == nil {
+		return ""
+	}
+
+	// Check for SECG tag (unofficial but common)
+	secgNames := NodesWithTag(node, UnofficialTagSecondaryGivenName)
+	if len(secgNames) > 0 {
+		return CleanSpace(secgNames[0].Value())
+	}
+
+	return ""
+}
+
 // Surname is a family name passed on or used by members of a family.
 func (node *NameNode) Surname() string {
 	if node == nil {
@@ -129,6 +145,35 @@ func (node *NameNode) Title() string {
 // "Grand Duke Bob Smith Esq.". It specifically uses NameFormatWritten.
 func (node *NameNode) String() string {
 	return node.Format(NameFormatWritten)
+}
+
+// FullName returns the complete name concatenating all parts in order:
+// Prefix, GivenName, SecondaryGivenName (middle), Surname, Suffix.
+// This provides a consistent full name representation.
+func (node *NameNode) FullName() string {
+	if node == nil {
+		return ""
+	}
+
+	parts := []string{}
+
+	if prefix := node.Prefix(); prefix != "" {
+		parts = append(parts, prefix)
+	}
+	if given := node.GivenName(); given != "" {
+		parts = append(parts, given)
+	}
+	if secondary := node.SecondaryGivenName(); secondary != "" {
+		parts = append(parts, secondary)
+	}
+	if surname := node.Surname(); surname != "" {
+		parts = append(parts, surname)
+	}
+	if suffix := node.Suffix(); suffix != "" {
+		parts = append(parts, suffix)
+	}
+
+	return strings.Join(parts, " ")
 }
 
 func (node *NameNode) Type() NameType {

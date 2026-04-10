@@ -1,4 +1,4 @@
-package surrealdb
+package v1
 
 import (
 	"bytes"
@@ -50,10 +50,10 @@ func (c *SurrealDBClient) Query(query string) ([]map[string]interface{}, error) 
 		return nil, err
 	}
 
-	req.Header.Set("Content-Type", "text/plain")
+	req.Header.Set("Content-Type", "application/surql")
 	req.Header.Set("Accept", "application/json")
-	req.Header.Set("NS", c.namespace)
-	req.Header.Set("DB", c.database)
+	req.Header.Set("surreal-ns", c.namespace)
+	req.Header.Set("surreal-db", c.database)
 	req.SetBasicAuth(c.username, c.password)
 
 	client := &http.Client{Timeout: 10 * time.Second}
@@ -82,6 +82,8 @@ func (c *SurrealDBClient) Query(query string) ([]map[string]interface{}, error) 
 
 // ImportData imports SurrealQL data
 func (c *SurrealDBClient) ImportData(data string) error {
+	// The exporter already includes USE NS ... DB ... in the output,
+	// so we don't need to add it again
 	_, err := c.Query(data)
 	return err
 }
@@ -104,6 +106,15 @@ func (c *SurrealDBClient) CleanupDatabase() error {
 	}
 
 	return nil
+}
+
+// getLastResult extracts the last result from a SurrealDB query response
+// This handles the case where USE statements create additional result objects
+func getLastResult(results []map[string]interface{}) map[string]interface{} {
+	if len(results) == 0 {
+		return nil
+	}
+	return results[len(results)-1]
 }
 
 // TestSurrealDBExport_BasicStructure tests that the export creates correct structure
@@ -148,22 +159,19 @@ func TestSurrealDBExport_BasicStructure(t *testing.T) {
 	require.NoError(t, err)
 
 	// Test 1: Verify people were created
-	results, err := client.Query("SELECT count() as count FROM person;")
+	results, err := client.Query("SELECT * FROM person;")
 	require.NoError(t, err)
-	require.Len(t, results, 1)
+	require.NotEmpty(t, results)
 
-	resultData := results[0]["result"].([]interface{})
-	require.Len(t, resultData, 1)
-	count := resultData[0].(map[string]interface{})["count"]
-	assert.Equal(t, float64(3), count, "Should have 3 people")
+	// Get the last result (actual query result, after any USE statements)
+	resultData := getLastResult(results)["result"].([]interface{})
+	assert.Len(t, resultData, 3, "Should have 3 people")
 
 	// Test 2: Verify family was created
-	results, err = client.Query("SELECT count() as count FROM family;")
+	results, err = client.Query("SELECT * FROM family;")
 	require.NoError(t, err)
-	resultData = results[0]["result"].([]interface{})
-	require.Len(t, resultData, 1)
-	count = resultData[0].(map[string]interface{})["count"]
-	assert.Equal(t, float64(1), count, "Should have 1 family")
+	resultData = getLastResult(results)["result"].([]interface{})
+	assert.Len(t, resultData, 1, "Should have 1 family")
 }
 
 // TestSurrealDBExport_SpouseRelationships tests spouse relationships
@@ -196,7 +204,7 @@ func TestSurrealDBExport_SpouseRelationships(t *testing.T) {
 	results, err := client.Query("SELECT ->spouse_of->person.name as spouse FROM person:i1;")
 	require.NoError(t, err)
 
-	resultData := results[0]["result"].([]interface{})
+	resultData := getLastResult(results)["result"].([]interface{})
 	require.Len(t, resultData, 1)
 
 	spouses := resultData[0].(map[string]interface{})["spouse"].([]interface{})
@@ -207,7 +215,7 @@ func TestSurrealDBExport_SpouseRelationships(t *testing.T) {
 	results, err = client.Query("SELECT ->spouse_of->person.name as spouse FROM person:i2;")
 	require.NoError(t, err)
 
-	resultData = results[0]["result"].([]interface{})
+	resultData = getLastResult(results)["result"].([]interface{})
 	require.Len(t, resultData, 1)
 
 	spouses = resultData[0].(map[string]interface{})["spouse"].([]interface{})
@@ -247,10 +255,10 @@ func TestSurrealDBExport_ParentChildRelationships(t *testing.T) {
 	require.NoError(t, err)
 
 	// Test 1: Bob's parents should include John and Jane
-	results, err := client.Query("SELECT <-child_of<-person.name as parents FROM person:i3;")
+	results, err := client.Query("SELECT ->child_of->person.name as parents FROM person:i3;")
 	require.NoError(t, err)
 
-	resultData := results[0]["result"].([]interface{})
+	resultData := getLastResult(results)["result"].([]interface{})
 	require.Len(t, resultData, 1)
 
 	parents := resultData[0].(map[string]interface{})["parents"].([]interface{})
@@ -267,7 +275,7 @@ func TestSurrealDBExport_ParentChildRelationships(t *testing.T) {
 	results, err = client.Query("SELECT ->parent_of->person.name as children FROM person:i1;")
 	require.NoError(t, err)
 
-	resultData = results[0]["result"].([]interface{})
+	resultData = getLastResult(results)["result"].([]interface{})
 	require.Len(t, resultData, 1)
 
 	children := resultData[0].(map[string]interface{})["children"].([]interface{})
@@ -321,10 +329,10 @@ func TestSurrealDBExport_MultiGenerational(t *testing.T) {
 
 	// Test: Find grandparents of grandchild
 	results, err := client.Query(
-		"SELECT <-child_of<-person<-child_of<-person.name as grandparents FROM person:i5;")
+		"SELECT ->child_of->person->child_of->person.name as grandparents FROM person:i5;")
 	require.NoError(t, err)
 
-	resultData := results[0]["result"].([]interface{})
+	resultData := getLastResult(results)["result"].([]interface{})
 	require.Len(t, resultData, 1)
 
 	grandparents := resultData[0].(map[string]interface{})["grandparents"].([]interface{})
@@ -366,7 +374,7 @@ func TestSurrealDBExport_PersonData(t *testing.T) {
 	results, err := client.Query("SELECT * FROM person:i1;")
 	require.NoError(t, err)
 
-	resultData := results[0]["result"].([]interface{})
+	resultData := getLastResult(results)["result"].([]interface{})
 	require.Len(t, resultData, 1)
 
 	personData := resultData[0].(map[string]interface{})
@@ -425,12 +433,12 @@ func TestSurrealDBExport_SiblingQuery(t *testing.T) {
 
 	// Find Alice's siblings
 	results, err := client.Query(`
-		SELECT <-child_of<-person->parent_of->person.name as siblings 
+		SELECT ->child_of->person->parent_of->person.name as siblings 
 		FROM person:i3
 	`)
 	require.NoError(t, err)
 
-	resultData := results[0]["result"].([]interface{})
+	resultData := getLastResult(results)["result"].([]interface{})
 	require.Len(t, resultData, 1)
 
 	siblings := resultData[0].(map[string]interface{})["siblings"].([]interface{})
@@ -481,17 +489,15 @@ func TestSurrealDBExport_ComplexFamily(t *testing.T) {
 	require.NoError(t, err)
 
 	// Test: Count total relationships
-	results, err := client.Query("SELECT count() as count FROM ->parent_of;")
+	results, err := client.Query("SELECT * FROM parent_of;")
 	require.NoError(t, err)
 
-	resultData := results[0]["result"].([]interface{})
-	require.Len(t, resultData, 1)
-	count := resultData[0].(map[string]interface{})["count"]
+	resultData := getLastResult(results)["result"].([]interface{})
 
 	// Each child has 2 parent_of links (from each parent)
 	// Family 1: 2 children * 2 parents = 4 links
 	// Family 2: 2 children * 2 parents = 4 links
 	// Family 3: 1 child * 2 parents = 2 links
 	// Total: 10 links
-	assert.Equal(t, float64(10), count, "Should have 10 parent_of relationships")
+	assert.Len(t, resultData, 10, "Should have 10 parent_of relationships")
 }

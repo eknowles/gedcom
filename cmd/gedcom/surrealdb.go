@@ -6,7 +6,7 @@ import (
 	"os"
 
 	"github.com/eknowles/gedcom/v39"
-	"github.com/eknowles/gedcom/v39/exporters/surrealdb"
+	v2 "github.com/eknowles/gedcom/v39/exporters/surrealdb/v2"
 )
 
 func runSurrealDBCommand() {
@@ -63,10 +63,10 @@ func runSurrealDBCommand() {
 	}
 	defer out.Close()
 
-	fmt.Println("Exporting to SurrealDB format...")
+	fmt.Println("Exporting to SurrealDB format (v2)...")
 
-	// Export to SurrealDB
-	exporter := surrealdb.NewExporter(out, namespace, database)
+	// Export to SurrealDB using v2 exporter
+	exporter := v2.NewExporter(out, namespace, database)
 	if err := exporter.Export(doc); err != nil {
 		fmt.Fprintf(os.Stderr, "Error exporting: %v\n", err)
 		os.Exit(1)

@@ -1,4 +1,4 @@
-package surrealdb
+package v1
 
 import (
 	"bytes"

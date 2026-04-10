@@ -1,4 +1,4 @@
-package surrealdb
+package v1
 
 import (
 	"encoding/json"
@@ -82,6 +82,17 @@ DEFINE FIELD burial.date ON person TYPE option<string>;
 DEFINE FIELD burial.date_range_start ON person TYPE option<datetime>;
 DEFINE FIELD burial.date_range_end ON person TYPE option<datetime>;
 DEFINE FIELD burial.place ON person TYPE option<string>;
+DEFINE FIELD security_group ON person TYPE option<string>;
+DEFINE FIELD physical_description ON person TYPE option<object>;
+DEFINE FIELD physical_description.height ON person TYPE option<string>;
+DEFINE FIELD physical_description.eyes ON person TYPE option<string>;
+DEFINE FIELD physical_description.hair ON person TYPE option<string>;
+DEFINE FIELD residency ON person TYPE option<array<object>>;
+DEFINE FIELD residency.*.date ON person TYPE option<string>;
+DEFINE FIELD residency.*.place ON person TYPE option<record<place>>;
+DEFINE FIELD education ON person TYPE option<array<object>>;
+DEFINE FIELD education.*.date ON person TYPE option<string>;
+DEFINE FIELD education.*.place ON person TYPE option<record<place>>;
 
 DEFINE TABLE family SCHEMAFULL;
 DEFINE FIELD pointer ON family TYPE string;
@@ -98,6 +109,11 @@ DEFINE FIELD files ON media_object TYPE option<array<string>>;
 DEFINE FIELD format ON media_object TYPE option<string>;
 DEFINE FIELD title ON media_object TYPE option<string>;
 DEFINE FIELD notes ON media_object TYPE option<array<string>>;
+
+DEFINE TABLE place SCHEMAFULL;
+DEFINE FIELD name ON place TYPE string;
+DEFINE FIELD address ON place TYPE option<string>;
+DEFINE FIELD coordinates ON place TYPE option<geometry<point>>;
 
 -- Define relationship tables
 DEFINE TABLE parent_of TYPE RELATION IN person OUT person;
