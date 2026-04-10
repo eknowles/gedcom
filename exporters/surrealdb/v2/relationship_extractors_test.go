@@ -118,7 +118,7 @@ func TestHasNoteRelationship(t *testing.T) {
 
 func TestHasNoteRelationship_WithEventContext(t *testing.T) {
 	doc := gedcom.NewDocument()
-	
+
 	// Create a note with pointer
 	note := gedcom.NewNode(gedcom.TagNote, "Birth note", "N1")
 	doc.AddNode(note)
@@ -191,7 +191,7 @@ func TestHasMediaRelationship_WithEventContext(t *testing.T) {
 
 func TestFamilyRelationships(t *testing.T) {
 	doc := gedcom.NewDocument()
-	
+
 	// Create note and media
 	note := gedcom.NewNode(gedcom.TagNote, "Family note", "N1")
 	doc.AddNode(note)
@@ -421,7 +421,3 @@ func TestExtractPointerFromValue(t *testing.T) {
 		})
 	}
 }
-
-
-
-

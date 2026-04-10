@@ -209,5 +209,3 @@ func MediaObjectEntityExtractor() EntityExtractor {
 		},
 	}
 }
-
-

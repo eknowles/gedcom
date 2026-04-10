@@ -112,4 +112,3 @@ func TestEntityTypesInExport(t *testing.T) {
 	assert.Equal(t, 0, incorrectNoteRel, "Should have NO has_note relationships to person table")
 	assert.Equal(t, 0, incorrectMediaRel, "Should have NO has_media relationships to person table")
 }
-

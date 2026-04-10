@@ -311,9 +311,9 @@ func TestGraphExtractor_IsComplexEvent(t *testing.T) {
 	extractor := NewGraphExtractor(doc)
 
 	tests := []struct {
-		name        string
-		setupEvent  func() gedcom.Node
-		isComplex   bool
+		name       string
+		setupEvent func() gedcom.Node
+		isComplex  bool
 	}{
 		{
 			name: "Simple birth event",
@@ -439,4 +439,3 @@ func findRelationship(rels []GraphRelationship, fromID, toID string) *GraphRelat
 	}
 	return nil
 }
-

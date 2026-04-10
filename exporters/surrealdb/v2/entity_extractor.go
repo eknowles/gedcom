@@ -2,7 +2,7 @@ package v2
 
 import (
 	"strings"
-	
+
 	"github.com/eknowles/gedcom/v39"
 )
 
@@ -155,6 +155,3 @@ func sanitizeID(pointer string) string {
 
 	return id
 }
-
-
-

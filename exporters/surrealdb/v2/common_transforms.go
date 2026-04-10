@@ -8,17 +8,17 @@ import (
 
 // CommonTransforms contains reusable transform functions
 var CommonTransforms = struct {
-	DateString      func(gedcom.Node) (interface{}, error)
-	DateRangeStart  func(gedcom.Node) (interface{}, error)
-	DateRangeEnd    func(gedcom.Node) (interface{}, error)
-	PlaceString     func(gedcom.Node) (interface{}, error)
-	NameString      func(gedcom.Node) (interface{}, error)
-	GivenName       func(gedcom.Node) (interface{}, error)
-	Surname         func(gedcom.Node) (interface{}, error)
-	FullText        func(gedcom.Node) (interface{}, error)
-	PointerValue    func(gedcom.Node) (interface{}, error)
-	SexString       func(gedcom.Node) (interface{}, error)
-	IsLiving        func(gedcom.Node) (interface{}, error)
+	DateString     func(gedcom.Node) (interface{}, error)
+	DateRangeStart func(gedcom.Node) (interface{}, error)
+	DateRangeEnd   func(gedcom.Node) (interface{}, error)
+	PlaceString    func(gedcom.Node) (interface{}, error)
+	NameString     func(gedcom.Node) (interface{}, error)
+	GivenName      func(gedcom.Node) (interface{}, error)
+	Surname        func(gedcom.Node) (interface{}, error)
+	FullText       func(gedcom.Node) (interface{}, error)
+	PointerValue   func(gedcom.Node) (interface{}, error)
+	SexString      func(gedcom.Node) (interface{}, error)
+	IsLiving       func(gedcom.Node) (interface{}, error)
 }{
 	DateString: func(node gedcom.Node) (interface{}, error) {
 		if dateNode, ok := node.(*gedcom.DateNode); ok && dateNode != nil {
@@ -239,5 +239,3 @@ func ExtractNameObjectWithNickname(individual *gedcom.IndividualNode) map[string
 
 	return obj
 }
-
-

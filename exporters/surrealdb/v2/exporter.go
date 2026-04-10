@@ -317,4 +317,3 @@ func extractIDFromTableID(id string) string {
 	}
 	return id
 }
-

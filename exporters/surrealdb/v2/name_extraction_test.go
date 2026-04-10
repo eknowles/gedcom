@@ -17,18 +17,18 @@ func TestExtractNameObjectWithNickname(t *testing.T) {
 		{
 			name: "Full name with SECG and nickname from TYPE nick",
 			gedcom: `0 @I1@ INDI
-1 NAME Charles William Frederick Lance /Knowles/
-2 GIVN Charles William
+1 NAME John William Sam Lance /Knowles/
+2 GIVN John William
 2 SURN Knowles
-2 SECG Frederick Lance
+2 SECG Sam Lance
 1 NAME William //
 2 TYPE nick
 2 GIVN William`,
 			expected: map[string]interface{}{
-				"given":    "Charles William",
-				"middle":   "Frederick Lance",
-				"surname":     "Knowles",
-				"full":     "Charles William Frederick Lance Knowles",
+				"given":    "John William",
+				"middle":   "Sam Lance",
+				"surname":  "Knowles",
+				"full":     "John William Sam Lance Knowles",
 				"nickname": "William",
 			},
 		},
@@ -41,7 +41,7 @@ func TestExtractNameObjectWithNickname(t *testing.T) {
 1 NICK Johnny`,
 			expected: map[string]interface{}{
 				"given":    "John",
-				"surname":     "Smith",
+				"surname":  "Smith",
 				"full":     "John Smith",
 				"nickname": "Johnny",
 			},
@@ -55,11 +55,11 @@ func TestExtractNameObjectWithNickname(t *testing.T) {
 2 SURN Johnson
 2 NSFX Jr.`,
 			expected: map[string]interface{}{
-				"prefix": "Dr.",
-				"given":  "Robert",
-				"surname":   "Johnson",
-				"suffix": "Jr.",
-				"full":   "Dr. Robert Johnson Jr.",
+				"prefix":  "Dr.",
+				"given":   "Robert",
+				"surname": "Johnson",
+				"suffix":  "Jr.",
+				"full":    "Dr. Robert Johnson Jr.",
 			},
 		},
 		{
@@ -69,9 +69,9 @@ func TestExtractNameObjectWithNickname(t *testing.T) {
 2 GIVN Jane
 2 SURN Doe`,
 			expected: map[string]interface{}{
-				"given": "Jane",
-				"surname":  "Doe",
-				"full":  "Jane Doe",
+				"given":   "Jane",
+				"surname": "Doe",
+				"full":    "Jane Doe",
 			},
 		},
 		{
@@ -114,7 +114,7 @@ func TestExtractNameObjectWithNickname(t *testing.T) {
 			// Ensure no extra fields (except those expected to be missing)
 			for key := range result {
 				if key == "full" || key == "given" || key == "middle" || key == "surname" ||
-				   key == "prefix" || key == "suffix" || key == "nickname" {
+					key == "prefix" || key == "suffix" || key == "nickname" {
 					// These are valid fields
 					continue
 				}
@@ -135,8 +135,3 @@ func TestExtractNameObjectWithNickname_NilOrEmpty(t *testing.T) {
 	result = ExtractNameObjectWithNickname(individual)
 	assert.Nil(t, result)
 }
-
-
-
-
-

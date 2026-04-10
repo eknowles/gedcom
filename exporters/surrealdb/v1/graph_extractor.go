@@ -593,4 +593,3 @@ func extractPointerFromValue(val string) string {
 	}
 	return ""
 }
-

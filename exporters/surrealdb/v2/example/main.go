@@ -94,4 +94,3 @@ func main() {
 	fmt.Println("    --ns genealogy --db smith_family \\")
 	fmt.Println("    output.surql")
 }
-

@@ -51,4 +51,3 @@ type GraphEdge struct {
 	Type       string                 // Relationship type
 	Properties map[string]interface{} // Edge properties
 }
-

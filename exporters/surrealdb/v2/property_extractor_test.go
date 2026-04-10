@@ -170,7 +170,7 @@ func TestExtractProperties(t *testing.T) {
 
 	extractors := []PropertyExtractor{
 		{
-			Name:    "pointer",
+			Name: "pointer",
 			Transform: func(node gedcom.Node) (interface{}, error) {
 				return node.Pointer(), nil
 			},
@@ -202,4 +202,3 @@ func TestExtractProperties(t *testing.T) {
 	assert.Equal(t, "London", properties["birth_place"])
 	assert.NotContains(t, properties, "death_date") // Should be excluded
 }
-

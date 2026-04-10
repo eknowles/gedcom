@@ -124,5 +124,3 @@ func TestFamilyMediaIntegration(t *testing.T) {
 	assert.Contains(t, output, "RELATE family:f1->has_media->media_object:m1", "Should link family to wedding photo")
 	assert.Contains(t, output, "RELATE family:f1->has_media->media_object:m2", "Should link family to marriage cert")
 }
-
-

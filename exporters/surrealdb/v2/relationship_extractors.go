@@ -286,9 +286,3 @@ func AllRelationshipExtractors() []RelationshipExtractor {
 		FamilyHasMediaRelationship(),
 	}
 }
-
-
-
-
-
-

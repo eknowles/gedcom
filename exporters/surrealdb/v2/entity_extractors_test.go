@@ -140,10 +140,10 @@ func TestMediaObjectEntityExtractor(t *testing.T) {
 
 func TestEventStrategy_ShouldCreateNode(t *testing.T) {
 	tests := []struct {
-		name             string
-		setupEvent       func() gedcom.Node
-		strategy         EventStrategy
-		expectedCreate   bool
+		name           string
+		setupEvent     func() gedcom.Node
+		strategy       EventStrategy
+		expectedCreate bool
 	}{
 		{
 			name: "Simple birth - inline",
@@ -226,6 +226,3 @@ func TestSanitizeID(t *testing.T) {
 		})
 	}
 }
-
-
-

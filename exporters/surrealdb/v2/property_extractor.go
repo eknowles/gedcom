@@ -90,4 +90,3 @@ func ExtractProperties(node gedcom.Node, extractors []PropertyExtractor) map[str
 
 	return properties
 }
-

@@ -293,6 +293,3 @@ func TestSurrealDBIntegration_V2_Relationships(t *testing.T) {
 	require.Len(t, spouses, 1)
 	assert.Equal(t, "Jane Smith", spouses[0])
 }
-
-
-

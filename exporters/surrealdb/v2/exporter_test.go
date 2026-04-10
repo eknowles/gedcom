@@ -318,6 +318,3 @@ func TestExtractIDFromTableID(t *testing.T) {
 		})
 	}
 }
-
-
-

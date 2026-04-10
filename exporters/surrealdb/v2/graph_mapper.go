@@ -25,7 +25,7 @@ func NewGraphMapper() *GraphMapper {
 			NoteEntityExtractor(),
 			MediaObjectEntityExtractor(),
 		},
-		Relationships:  AllRelationshipExtractors(),
+		Relationships: AllRelationshipExtractors(),
 		EventStrategy: DefaultEventStrategy(),
 	}
 }
@@ -61,4 +61,3 @@ func (gm *GraphMapper) ExtractRelationships(doc *gedcom.Document) []GraphEdge {
 
 	return allEdges
 }
-

@@ -173,5 +173,3 @@ func findNodeByID(nodes []GraphNode, id string) *GraphNode {
 	}
 	return nil
 }
-
-
