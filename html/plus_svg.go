@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"io"
 
-	"github.com/elliotchance/gedcom/v39/html/core"
+	"github.com/eknowles/gedcom/v39/html/core"
 )
 
 // PlusSVG draws a "+" as an SVG with each line of the "+" being optional.

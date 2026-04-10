@@ -4,8 +4,8 @@ import (
 	"fmt"
 	"io"
 
-	"github.com/elliotchance/gedcom/v39"
-	"github.com/elliotchance/gedcom/v39/html/core"
+	"github.com/eknowles/gedcom/v39"
+	"github.com/eknowles/gedcom/v39/html/core"
 )
 
 // IndividualButton is a large coloured button that links to an individuals

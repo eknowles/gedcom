@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/elliotchance/gedcom/v39"
+	"github.com/eknowles/gedcom/v39"
 )
 
 func runWarningsCommand() {

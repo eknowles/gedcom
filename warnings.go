@@ -4,7 +4,7 @@ import (
 	"io"
 	"sort"
 
-	"github.com/elliotchance/gedcom/v39/html/core"
+	"github.com/eknowles/gedcom/v39/html/core"
 )
 
 type Warnings []Warning

@@ -4,7 +4,7 @@ import (
 	"sort"
 	"testing"
 
-	"github.com/elliotchance/gedcom/v39"
+	"github.com/eknowles/gedcom/v39"
 	"github.com/stretchr/testify/assert"
 )
 
@@ -179,6 +179,7 @@ var tagTests = map[string]struct {
 	"_LOM":    {y, n, n, &gedcom.UnofficialTagLongitudeMinutes, "Longitude Minutes"},
 	"_LON":    {y, n, n, &gedcom.UnofficialTagLongitudeNorth, "Longitude North"},
 	"_LOS":    {y, n, n, &gedcom.UnofficialTagLongitudeSeconds, "Longitude Seconds"},
+	"SECG":    {y, n, n, &gedcom.UnofficialTagSecondaryGivenName, "Secondary Given Name"},
 	"_UID":    {y, n, n, &gedcom.UnofficialTagUniqueID, "Unique ID"},
 
 	// Unknown
@@ -408,6 +409,7 @@ func TestTags(t *testing.T) {
 			gedcom.UnofficialTagLongitudeMinutes,
 			gedcom.UnofficialTagLongitudeNorth,
 			gedcom.UnofficialTagLongitudeSeconds,
+			gedcom.UnofficialTagSecondaryGivenName,
 			gedcom.UnofficialTagUniqueID,
 		}, tags)
 	})

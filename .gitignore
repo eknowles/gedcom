@@ -3,3 +3,8 @@
 /vendor
 /gh-md-toc
 /coverage.txt
+./bin/*
+
+*.ged
+*.surql
+output/

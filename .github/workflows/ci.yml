@@ -21,13 +21,56 @@ jobs:
           echo "Code is not formatted"
           exit 1
         fi
-    - name: Run tests with coverage
-      run: make test-coverage
+    - name: Run tests with coverage (excluding integration tests)
+      run: go test -short -race -coverprofile=coverage.txt -covermode=atomic ./...
     - name: Upload coverage to Codecov
       uses: codecov/codecov-action@v5
       with:
         token: ${{ secrets.CODECOV_TOKEN }}
         files: ./coverage.txt
+
+  integration-test:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - uses: actions/setup-go@v4
+      with:
+        go-version: '1.26'
+
+    - name: Install SurrealDB
+      run: |
+        curl -sSf https://install.surrealdb.com | sh
+
+    - name: Start SurrealDB
+      run: |
+        # Start SurrealDB in memory mode for testing
+        surreal start --log trace --user root --pass root memory &
+        
+        # Wait for SurrealDB to be ready
+        echo "Waiting for SurrealDB to start..."
+        for i in {1..30}; do
+          if curl -s http://localhost:8000/health > /dev/null 2>&1; then
+            echo "SurrealDB is ready!"
+            break
+          fi
+          if [ $i -eq 30 ]; then
+            echo "SurrealDB failed to start"
+            exit 1
+          fi
+          echo "Attempt $i/30 - waiting..."
+          sleep 1
+        done
+
+    - name: Run integration tests
+      run: |
+        # Run only integration tests (non-short tests)
+        echo "Running v1 integration tests..."
+        go test -v -race ./exporters/surrealdb/v1/... -run SurrealDBExport
+        
+        echo "Running v2 integration tests..."
+        go test -v -race ./exporters/surrealdb/v2/... -run Integration
+      env:
+        SURREALDB_URL: http://localhost:8000
 
   release:
     runs-on: ubuntu-latest

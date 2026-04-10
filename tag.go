@@ -669,6 +669,11 @@ var (
 
 	// See UniqueIDNode.
 	UnofficialTagUniqueID = newTag("_UID", "Unique ID", tagOptionNone, tagSortIndividualUnofficial)
+
+	// Unofficial. Secondary given names or middle names. SECG is non-standard but
+	// commonly seen exported from various genealogy software. Note: This doesn't
+	// follow the official GEDCOM convention of starting unofficial tags with '_'.
+	UnofficialTagSecondaryGivenName = newTag("SECG", "Secondary Given Name", tagOptionNone, tagSortIndividualUnofficial)
 )
 
 // TagFromString returns known tag constant like TagHeader from it's raw string
@@ -732,11 +737,12 @@ func Tags() []Tag {
 
 		// Unofficial
 		UnofficialTagFamilySearchID1, UnofficialTagFamilySearchID2,
-		UnofficialTagLatitudeDegrees,
-		UnofficialTagLatitudeMinutes, UnofficialTagLatitudeSeconds,
+		UnofficialTagLatitudeDegrees, UnofficialTagLatitudeMinutes,
+		UnofficialTagLatitudeSeconds,
 		UnofficialTagLongitudeDegress, UnofficialTagLongitudeMinutes,
 		UnofficialTagLongitudeNorth, UnofficialTagLongitudeSeconds,
 		UnofficialTagCoordinates, UnofficialTagCreated, UnofficialTagUniqueID,
+		UnofficialTagSecondaryGivenName,
 	}
 }
 
@@ -750,6 +756,11 @@ func (tag Tag) IsOfficial() bool {
 	tagLen := len(tag.tag)
 
 	if tagLen == 0 {
+		return false
+	}
+
+	// SECG is unofficial but doesn't follow the convention of starting with '_'
+	if tag.tag == "SECG" {
 		return false
 	}
 

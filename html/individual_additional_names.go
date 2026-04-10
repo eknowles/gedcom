@@ -3,8 +3,8 @@ package html
 import (
 	"io"
 
-	"github.com/elliotchance/gedcom/v39"
-	"github.com/elliotchance/gedcom/v39/html/core"
+	"github.com/eknowles/gedcom/v39"
+	"github.com/eknowles/gedcom/v39/html/core"
 )
 
 // IndividualAdditionalNames is shown on the individual page. It shows all of
@@ -21,7 +21,11 @@ func NewIndividualAdditionalNames(individual *gedcom.IndividualNode) *Individual
 
 func (c *IndividualAdditionalNames) WriteHTMLTo(w io.Writer) (int64, error) {
 	rows := []core.Component{}
-	names := c.individual.Names()[1:]
+	allNames := c.individual.Names()
+	names := allNames[:0]
+	if len(allNames) > 1 {
+		names = allNames[1:]
+	}
 
 	for _, name := range names {
 		row := core.NewKeyedTableRow(

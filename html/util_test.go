@@ -6,7 +6,7 @@ import (
 	"testing"
 
 	"github.com/antchfx/htmlquery"
-	"github.com/elliotchance/gedcom/v39/html/core"
+	"github.com/eknowles/gedcom/v39/html/core"
 	"github.com/elliotchance/tf"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"

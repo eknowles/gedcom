@@ -3,8 +3,8 @@ package q_test
 import (
 	"testing"
 
-	"github.com/elliotchance/gedcom/v39"
-	"github.com/elliotchance/gedcom/v39/q"
+	"github.com/eknowles/gedcom/v39"
+	"github.com/eknowles/gedcom/v39/q"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 )

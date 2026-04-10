@@ -6,7 +6,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/elliotchance/gedcom/v39/util"
+	"github.com/eknowles/gedcom/v39/util"
 )
 
 // DefaultMinimumSimilarity is a sensible value to provide to the
